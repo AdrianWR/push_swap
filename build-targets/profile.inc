@@ -1,0 +1,2 @@
+CPPFLAGS += -pg
+LDFLAGS  += -pg
