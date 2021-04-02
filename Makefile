@@ -32,7 +32,7 @@ override LDLIBS		+=
 .PHONY: all clean fclean re force test shell debug
 
 # Source and object files for the executable
-SRC_FILES	=	checker/checker.c
+SRC_FILES	=	src/checker/checker.c
 
 O_FILES		= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(SRC_FILES))
 
