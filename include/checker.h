@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/28 18:23:08 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/04 22:30:07 by aroque           ###   ########.fr       */
+/*   Created: 2021/04/02 23:23:49 by aroque            #+#    #+#             */
+/*   Updated: 2021/04/04 12:33:55 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#ifndef CHECKER_H
+# define CHECKER_H
 
-void	rotate(t_stack *stack)
-{
-	unsigned int	i;
-	int				tmp;
+# define INSTRUCTIONS_BUFFER_SIZE 16
+# include "stack.h"
 
-	i = stack->top + 1;
-	tmp = stack->array[stack->top];
-	while (--i)
-		stack->array[i] = stack->array[i - 1];
-	stack->array[0] = tmp;
-}
+int	binary_search(int n, int *data, int size);
+int	fill_stack(t_stack *stack, char *argv[]);
+int	get_instructions(char ***instructions);
+int	execute(char **instructions, t_stack *stack);
 
-void	reverse_rotate(t_stack *stack)
-{
-	int	i;
-	int	tmp;
-
-	i = -1;
-	tmp = stack->array[0];
-	while (++i < stack->top)
-		stack->array[i] = stack->array[i + 1];
-	stack->array[stack->top] = tmp;
-}
+#endif

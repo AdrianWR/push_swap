@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 11:24:25 by aroque            #+#    #+#             */
-/*   Updated: 2021/03/06 19:00:09 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/04 22:30:51 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void				ft_putnbr_fd(int n, int fd);
 **	-----------------------------
 */
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*previous;

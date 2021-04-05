@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 14:48:36 by aroque            #+#    #+#             */
-/*   Updated: 2021/03/28 15:36:53 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/04 22:29:39 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ t_stack	*initialize(unsigned int size)
 {
 	t_stack	*stack;
 
-	if (!(stack = malloc(sizeof(*stack))))
+	stack = malloc(sizeof(*stack));
+	if (!(stack))
 		return (NULL);
-	if (!(stack->array = malloc(size * sizeof(*(stack->array)))))
+	stack->array = malloc(size * sizeof(*(stack->array)));
+	if (!(stack->array))
 		return (NULL);
 	stack->size = size;
 	stack->top = -1;

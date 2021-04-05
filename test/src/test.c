@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2021/03/28 18:58:09 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/02 23:33:27 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,34 @@ MU_TEST_SUITE(test_suite_stack)
 	MU_RUN_TEST(test_reverse_rotate_null);
 }
 
+/*
+** ---------------------
+** --- Checker Tests ---
+** ---------------------
+*/
+
+#include "checker.h"
+
+MU_TEST(test_binary_search)
+{
+	int array[] = {1, 2, 4, 7, 19, 23};
+	int array_size = 6;
+
+	mu_assert_int_eq(true, binary_search(4, array, array_size));
+	mu_assert_int_eq(true, binary_search(1, array, array_size));
+	mu_assert_int_eq(false, binary_search(42, array, array_size));
+}
+
+
+MU_TEST_SUITE(test_suite_checker)
+{
+	MU_RUN_TEST(test_binary_search);
+}
+
 int	main(void)
 {
 	MU_RUN_SUITE(test_suite_stack);
+	MU_RUN_SUITE(test_suite_checker);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }

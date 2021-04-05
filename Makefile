@@ -32,8 +32,12 @@ override LDLIBS		+=
 .PHONY: all clean fclean re force test shell debug
 
 # Source and object files for the executable
-SRC_FILES	=	src/checker/checker.c
-
+vpath %.c src/checker
+SRC_FILES	=	checker.c		\
+				fill_stack.c	\
+				search.c		\
+				get_line.c		\
+				execute.c
 O_FILES		= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(SRC_FILES))
 
 # Build and link of multiple libraries
@@ -107,7 +111,7 @@ TEST_INCLUDES = $(patsubst %,-I%/include,$(TEST_FOLDER))
 override CPPFLAGS += $(TEST_INCLUDES)
 TEST_SRC_FILES = $(TEST_FOLDER)/src/test.c
 TEST_O_FILES   = $(patsubst %.c,build/$(BUILD)/build/%.o, $(TEST_SRC_FILES))
-override TEST_O_FILES += $(filter-out $(filter %/main.o, $(O_FILES)), $(O_FILES))
+override TEST_O_FILES += $(filter-out $(filter %/checker.o, $(O_FILES)), $(O_FILES))
 
 all: $(NAME)
 
@@ -127,7 +131,7 @@ all: $(NAME)
 .build-target: force
 	echo $(BUILD) | cmp -s - $@ || echo $(BUILD) > $@
 
-$(NAME): build/$(BUILD)/bin/$(NAME) .build-target $(STATIC_LIBRARY_OUTPUT)
+checker: build/$(BUILD)/bin/checker .build-target $(STATIC_LIBRARY_OUTPUT)
 	mkdir -p $(@D)
 	cp -f $< $@
 
