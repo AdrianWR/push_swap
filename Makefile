@@ -5,7 +5,7 @@
 
 # Default build variables, can be overridden by command line options.
 
-NAME		=	checker
+NAME		=	checker push_swap
 
 CC			=	clang
 CPPFLAGS	=
@@ -32,13 +32,22 @@ override LDLIBS		+=
 .PHONY: all clean fclean re force test shell debug
 
 # Source and object files for the executable
-vpath %.c src/checker
-SRC_FILES	=	checker.c		\
-				fill_stack.c	\
-				search.c		\
-				get_line.c		\
-				execute.c
-O_FILES		= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(SRC_FILES))
+vpath %.c src src/checker src/push_swap
+
+SRC_FILES			=	fill_stack.c	\
+						search.c		\
+						free.c
+O_FILES				= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(SRC_FILES))
+
+CHECKER_SRC_FILES	=	checker.c		\
+						search.c		\
+						get_line.c		\
+						execute.c
+CHECKER_O_FILES		= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(CHECKER_SRC_FILES)) $(O_FILES)
+
+PUSH_SWAP_SRC_FILES	=	push_swap.c		\
+						sort.c
+PUSH_SWAP_O_FILES	= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(PUSH_SWAP_SRC_FILES)) $(O_FILES)
 
 # Build and link of multiple libraries
 LIBRARY_FOLDERS = libft libstack
@@ -135,11 +144,19 @@ checker: build/$(BUILD)/bin/checker .build-target $(STATIC_LIBRARY_OUTPUT)
 	mkdir -p $(@D)
 	cp -f $< $@
 
+push_swap: build/$(BUILD)/bin/push_swap .build-target $(STATIC_LIBRARY_OUTPUT)
+	mkdir -p $(@D)
+	cp -f $< $@
+
 lib/%: build/$(BUILD)/lib/% .build-target
 	mkdir -p $(@D)
 	cp -f $< $@
 
-build/$(BUILD)/bin/%: $(O_FILES) $(STATIC_LIBRARY_OUTPUT)
+build/$(BUILD)/bin/checker: $(CHECKER_O_FILES) $(STATIC_LIBRARY_OUTPUT)
+	mkdir -p $(@D)
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
+
+build/$(BUILD)/bin/push_swap: $(PUSH_SWAP_O_FILES) $(STATIC_LIBRARY_OUTPUT)
 	mkdir -p $(@D)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
