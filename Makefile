@@ -34,8 +34,8 @@ override LDLIBS		+=
 # Source and object files for the executable
 vpath %.c src src/checker src/push_swap
 
-SRC_FILES			=	fill_stack.c	\
-						search.c		\
+SRC_FILES			=	get_stack.c	\
+						search.c	\
 						free.c
 O_FILES				= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(SRC_FILES))
 
