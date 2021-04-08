@@ -6,10 +6,11 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 23:27:40 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/08 08:41:25 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/08 09:03:53 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdbool.h>
 #include "stack.h"
 #include "libft.h"
@@ -45,18 +46,17 @@ bool	already_exists(n, stack_size)
 {
 	static int	*data;
 	static int	size;
+	bool		exists;
 
+	exists = false;
 	if (!data)
 		data = malloc(stack_size * sizeof(*data));
-	if (binary_search(n, data, size))
-	{
+	exists = binary_search(n, data, size);
+	if (!exists)
+		insert_sorted(n, data, size++);
+	if (exists || size == stack_size)
 		free(data);
-		return (true);
-	}
-	insert_sorted(n, data, size++);
-	if (size == stack_size)
-		free(data);
-	return (false);
+	return (exists);
 }
 
 int	fill_element(t_stack *stack, char *elem)
@@ -72,18 +72,24 @@ int	fill_element(t_stack *stack, char *elem)
 	return (0);
 }
 
-t_stack	*fill_stack(int size, char **args)
+t_stack	*get_stack(int size, char **args)
 {
-	int				status;
 	unsigned int	i;
+	int				status;
 	t_stack			*stack;
 
+	if (size < 1)
+		exit(0);
 	i = 0;
 	status = 0;
 	stack = initialize(size);
 	while (args[i] && !status)
 		status = fill_element(stack, args[i++]);
 	if (status)
-		message_and_exit(stack, NULL, status);
+	{
+		free_stack(stack);
+		ft_putstr_fd("Error\n", STDERR_FILENO);
+		exit(status);
+	}
 	return (stack);
 }
