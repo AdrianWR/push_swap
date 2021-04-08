@@ -206,9 +206,9 @@ shell: $(NAME)
 # UTILS #
 #########
 
-debug:
-	$(MAKE) BUILD=debug build/debug/bin/$(NAME)
-	gdb ./build/debug/bin/$(NAME)
+debug_push_swap:
+	$(MAKE) BUILD=debug build/debug/bin/push_swap
+	gdb ./build/debug/bin/push_swap
 
 clean:
 	$(RM) -r bin build lib .build-target
