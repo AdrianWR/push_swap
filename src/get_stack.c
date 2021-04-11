@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_stack.c                                       :+:      :+:    :+:   */
+/*   get_stack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 23:27:40 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/08 09:03:53 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/11 16:16:48 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@ bool	validate_int(char *elem)
 {
 	bool			is_int;
 	unsigned int	i;
+	unsigned int	cm;
 
 	i = 0;
+	cm = 0;
 	is_int = true;
 	while (elem[i] && is_int)
 	{
-		if (!ft_isdigit(elem[i++]))
+		if (elem[i] == '-' && cm < 1)
+			cm++;
+		else if (!ft_isdigit(elem[i++]))
 			is_int = false;
 	}
 	return (!is_int);
@@ -59,17 +63,29 @@ bool	already_exists(n, stack_size)
 	return (exists);
 }
 
-int	fill_element(t_stack *stack, char *elem)
+int	fill_element(t_stack *stack, char *arg)
 {
-	int	n;
+	unsigned int	j;
+	int				n;
+	int				status;
+	char			**array;
 
-	if (validate_int(elem))
-		return (1);
-	n = atoi(elem);
-	if (already_exists(n, stack->size))
-		return (1);
-	stack->array[++stack->top] = n;
-	return (0);
+	j = 0;
+	status = 0;
+	array = ft_split(arg, SPACE);
+	while (array[j] && !status)
+	{
+		if (validate_int(array[j]))
+			status = 1;
+		if (atoiv(array[j], &n))
+			status = 2;
+		if (already_exists(n, stack->size))
+			status = 3;
+		stack->array[++stack->top] = n;
+		j++;
+	}
+	free_array((void **)array);
+	return (status);
 }
 
 t_stack	*get_stack(int size, char **args)
