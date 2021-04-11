@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/02 23:33:27 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/10 15:39:26 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include "stack.h"
 #include "minunit.h"
+#include "general.h"
 
 MU_TEST(test_swap)
 {
@@ -137,7 +138,7 @@ MU_TEST_SUITE(test_suite_stack)
 
 /*
 ** ---------------------
-** --- Checker Tests ---
+** --- General Tests ---
 ** ---------------------
 */
 
@@ -153,16 +154,43 @@ MU_TEST(test_binary_search)
 	mu_assert_int_eq(false, binary_search(42, array, array_size));
 }
 
+MU_TEST(test_atoiv)
+{
+	int		n;
+	bool	overflow;
 
-MU_TEST_SUITE(test_suite_checker)
+	overflow = atoiv("472", &n);
+	mu_assert_int_eq(472, n);
+	mu_assert_int_eq(false, overflow);
+	overflow = atoiv("2147483647", &n);
+	mu_assert_int_eq(2147483647, n);
+	mu_assert_int_eq(false, overflow);
+	overflow = atoiv("-2147483648", &n);
+	mu_assert_int_eq(-2147483648, n);
+	mu_assert_int_eq(false, overflow);
+	overflow = atoiv("2147483648", &n);
+	mu_assert_int_eq(true, overflow);
+	overflow = atoiv("10000000000000", &n);
+	mu_assert_int_eq(true, overflow);
+	overflow = atoiv("21474836480000000", &n);
+	mu_assert_int_eq(true, overflow);
+	overflow = atoiv("-2147483649", &n);
+	mu_assert_int_eq(true, overflow);
+	overflow = atoiv("-21474836490000", &n);
+	mu_assert_int_eq(true, overflow);
+}
+
+
+MU_TEST_SUITE(test_suite_general)
 {
 	MU_RUN_TEST(test_binary_search);
+	MU_RUN_TEST(test_atoiv);
 }
 
 int	main(void)
 {
 	MU_RUN_SUITE(test_suite_stack);
-	MU_RUN_SUITE(test_suite_checker);
+	MU_RUN_SUITE(test_suite_general);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }
