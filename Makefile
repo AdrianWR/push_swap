@@ -36,7 +36,8 @@ vpath %.c src src/checker src/push_swap
 
 SRC_FILES			=	get_stack.c	\
 						search.c	\
-						free.c
+						free.c		\
+						utils.c
 O_FILES				= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(SRC_FILES))
 
 CHECKER_SRC_FILES	=	checker.c		\
@@ -46,7 +47,8 @@ CHECKER_SRC_FILES	=	checker.c		\
 CHECKER_O_FILES		= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(CHECKER_SRC_FILES)) $(O_FILES)
 
 PUSH_SWAP_SRC_FILES	=	push_swap.c		\
-						sort.c
+						sort.c			\
+						run.c
 PUSH_SWAP_O_FILES	= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(PUSH_SWAP_SRC_FILES)) $(O_FILES)
 
 # Build and link of multiple libraries
