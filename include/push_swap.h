@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 21:09:58 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/10 17:31:25 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/11 22:58:50 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,8 @@
 
 void	sort(t_stack *stack);
 void	run(char *op, t_stack *a, t_stack *b);
+int		mid_point(int *chunk, size_t size);
+void	push_chunk(t_stack *a, t_stack *b);
+void	pull_chunk(t_stack *a, t_stack *b, int size);
 
 #endif
