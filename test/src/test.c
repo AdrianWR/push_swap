@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/10 15:39:26 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/14 23:47:27 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "stack.h"
 #include "minunit.h"
 #include "general.h"
+#include "push_swap.h"
 
 MU_TEST(test_swap)
 {
@@ -146,7 +147,7 @@ MU_TEST_SUITE(test_suite_stack)
 
 MU_TEST(test_binary_search)
 {
-	int array[] = {1, 2, 4, 7, 19, 23};
+	int array[] = { 1, 2, 4, 7, 19, 23 };
 	int array_size = 6;
 
 	mu_assert_int_eq(true, binary_search(4, array, array_size));
@@ -180,17 +181,57 @@ MU_TEST(test_atoiv)
 	mu_assert_int_eq(true, overflow);
 }
 
-
 MU_TEST_SUITE(test_suite_general)
 {
 	MU_RUN_TEST(test_binary_search);
 	MU_RUN_TEST(test_atoiv);
 }
 
+/*
+** ------------------
+** --- Sort Tests ---
+** ------------------
+*/
+
+MU_TEST(test_push_chunk)
+{
+	//int fd;
+	int size = 12;
+	int list[] = { 11, 8, 1, 4, 7, 9, 6, 10, 12, 5, 3, 2 };
+
+	t_stack	*a;
+	t_stack	*b;
+
+	//fd = dup(STDOUT_FILENO);
+	//close(STDOUT_FILENO);
+	a = initialize(64);
+	b = initialize(64);
+	memcpy(a->array, list, size * sizeof(*list));
+	a->top = 11;
+	mu_assert_int_eq(11, a->array[0]);
+	mu_assert_int_eq(8, a->array[1]);
+	mu_assert_int_eq(2, a->array[11]);
+	mu_assert_int_eq(11, a->top);
+	push_chunk(a, b);
+	//mu_assert_int_eq(0, b->array[0]);
+	//mu_assert_int_eq(0, b->array[1]);
+	//mu_assert_int_eq(0, b->array[2]);
+	//mu_assert_int_eq(0, b->array[3]);
+	//dup2(fd, STDOUT_FILENO);
+	//close(fd);
+
+}
+
+MU_TEST_SUITE(test_suite_sort)
+{
+	MU_RUN_TEST(test_push_chunk);
+}
+
 int	main(void)
 {
 	MU_RUN_SUITE(test_suite_stack);
 	MU_RUN_SUITE(test_suite_general);
+	MU_RUN_SUITE(test_suite_sort);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }

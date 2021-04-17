@@ -123,8 +123,10 @@ TEST_FOLDER = test
 TEST_INCLUDES = $(patsubst %,-I%/include,$(TEST_FOLDER))
 override CPPFLAGS += $(TEST_INCLUDES)
 TEST_SRC_FILES = $(TEST_FOLDER)/src/test.c
-TEST_O_FILES   = $(patsubst %.c,build/$(BUILD)/build/%.o, $(TEST_SRC_FILES))
-override TEST_O_FILES += $(filter-out $(filter %/checker.o, $(O_FILES)), $(O_FILES))
+TEST_O_FILES	= $(patsubst %.c,build/$(BUILD)/build/%.o, $(TEST_SRC_FILES))
+TEST_O_FILES	+= $(O_FILES)
+TEST_O_FILES	+= $(filter-out %/checker.o, $(CHECKER_O_FILES))
+TEST_O_FILES	+= $(filter-out %/push_swap.o, $(PUSH_SWAP_O_FILES))
 
 all: $(NAME)
 
