@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/18 15:02:22 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/18 15:31:53 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,7 +237,9 @@ MU_TEST(test_push_chunk)
 	mu_assert_int_eq(2, b->array[0]);
 	mu_assert_int_eq(3, b->array[1]);
 	mu_assert_int_eq(5, b->array[2]);
-	//mu_assert_int_eq(0, b->array[3]);
+	mu_assert_int_eq(6, b->array[3]);
+	mu_assert_int_eq(4, b->array[4]);
+	mu_assert_int_eq(1, b->array[5]);
 	dup2(fd, STDOUT_FILENO);
 
 }
@@ -251,8 +253,7 @@ int	main(void)
 {
 	MU_RUN_SUITE(test_suite_stack);
 	MU_RUN_SUITE(test_suite_general);
-	//MU_RUN_SUITE(test_suite_sort);
-	(void)test_suite_sort;
+	MU_RUN_SUITE(test_suite_sort);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }

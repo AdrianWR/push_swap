@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:57:26 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/11 22:57:39 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/18 16:06:58 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	insertion_sort(int array[], size_t size)
 	}
 }
 
-int	mid_point(int *chunk, size_t size)
+int	pivot(int *chunk, size_t size)
 {
 	int	mid;
 	int	*copy;

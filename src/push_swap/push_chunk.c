@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:55:52 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/17 16:11:24 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/18 16:07:20 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	push_chunk(t_stack *a, t_stack *b)
 	}
 	else
 	{
-		mid = mid_point(a->array, a->top + 1);
+		mid = pivot(a->array, a->top + 1);
 		chunk_size = a->top / 2 + a->top % 2;
 		sort_mid_point_push(a, b, mid, chunk_size);
 		push_chunk(a, b);
-		//pull_chunk(a, b, chunk_size);
+		pull_chunk(a, b, chunk_size);
 	}
 }
