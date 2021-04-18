@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/14 23:47:27 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/18 15:02:22 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,10 +181,31 @@ MU_TEST(test_atoiv)
 	mu_assert_int_eq(true, overflow);
 }
 
+MU_TEST(test_reverse_array)
+{
+	int array1[] = { 0, 1, 2, 3, 4 };
+	int array2[] = { 0, 1, 2, 3, 4, 5 };
+
+	reverse_array(array1, 5);
+	mu_assert_int_eq(4, array1[0]);
+	mu_assert_int_eq(3, array1[1]);
+	mu_assert_int_eq(2, array1[2]);
+	mu_assert_int_eq(1, array1[3]);
+	mu_assert_int_eq(0, array1[4]);
+	reverse_array(array2, 6);
+	mu_assert_int_eq(5, array2[0]);
+	mu_assert_int_eq(4, array2[1]);
+	mu_assert_int_eq(3, array2[2]);
+	mu_assert_int_eq(2, array2[3]);
+	mu_assert_int_eq(1, array2[4]);
+	mu_assert_int_eq(0, array2[5]);
+}
+
 MU_TEST_SUITE(test_suite_general)
 {
 	MU_RUN_TEST(test_binary_search);
 	MU_RUN_TEST(test_atoiv);
+	MU_RUN_TEST(test_reverse_array);
 }
 
 /*
@@ -195,14 +216,14 @@ MU_TEST_SUITE(test_suite_general)
 
 MU_TEST(test_push_chunk)
 {
-	//int fd;
+	int fd;
 	int size = 12;
 	int list[] = { 11, 8, 1, 4, 7, 9, 6, 10, 12, 5, 3, 2 };
 
 	t_stack	*a;
 	t_stack	*b;
 
-	//fd = dup(STDOUT_FILENO);
+	fd = dup(STDOUT_FILENO);
 	//close(STDOUT_FILENO);
 	a = initialize(64);
 	b = initialize(64);
@@ -213,12 +234,11 @@ MU_TEST(test_push_chunk)
 	mu_assert_int_eq(2, a->array[11]);
 	mu_assert_int_eq(11, a->top);
 	push_chunk(a, b);
-	//mu_assert_int_eq(0, b->array[0]);
-	//mu_assert_int_eq(0, b->array[1]);
-	//mu_assert_int_eq(0, b->array[2]);
+	mu_assert_int_eq(2, b->array[0]);
+	mu_assert_int_eq(3, b->array[1]);
+	mu_assert_int_eq(5, b->array[2]);
 	//mu_assert_int_eq(0, b->array[3]);
-	//dup2(fd, STDOUT_FILENO);
-	//close(fd);
+	dup2(fd, STDOUT_FILENO);
 
 }
 
@@ -231,7 +251,8 @@ int	main(void)
 {
 	MU_RUN_SUITE(test_suite_stack);
 	MU_RUN_SUITE(test_suite_general);
-	MU_RUN_SUITE(test_suite_sort);
+	//MU_RUN_SUITE(test_suite_sort);
+	(void)test_suite_sort;
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }

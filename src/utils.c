@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 09:37:58 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/10 15:39:09 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/18 15:08:27 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,25 @@ bool	atoiv(const char *str, int *n)
 	}
 	*n *= signal;
 	return (overflow);
+}
+
+static void	swap(int *a, int *b)
+{
+	int	aux;
+
+	aux = *b;
+	*b = *a;
+	*a = aux;
+}
+
+void	reverse_array(int *array, size_t size)
+{
+	static size_t	i;
+
+	if (i < size)
+	{
+		swap(&array[i++], &array[size - 1]);
+		reverse_array(array, size - 1);
+	}
+	i = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 23:27:40 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/11 16:46:16 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/18 14:56:15 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ t_stack	*get_stack(int size, char **args)
 		ft_putstr_fd("Error\n", STDERR_FILENO);
 		exit(status);
 	}
+	reverse_array(stack->array, stack->top + 1);
 	return (stack);
 }
