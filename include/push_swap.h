@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 21:09:58 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/18 16:07:09 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/18 21:18:38 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@
 # define RRA "rra"
 # define RRB "rrb"
 
+int		pivot(int *chunk, size_t size);
 void	sort(t_stack *stack);
 void	run(char *op, t_stack *a, t_stack *b);
-int		pivot(int *chunk, size_t size);
+void	run_n(char *op, t_stack *a, t_stack *b, int n);
 void	push_chunk(t_stack *a, t_stack *b);
 void	pull_chunk(t_stack *a, t_stack *b, int size);
+void	push_closest(int p, t_stack *a, t_stack *b);
 
 #endif

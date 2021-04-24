@@ -6,14 +6,14 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:55:52 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/18 16:07:20 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/18 21:15:05 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "stack.h"
 
-void sort_mid_point_push(t_stack *from, t_stack *to, int mid, int chunk_size)
+void sort_pivot_push(t_stack *from, t_stack *to, int mid, int chunk_size)
 {
 	while (from->top >= chunk_size && from->top > 1)
 	{
@@ -29,9 +29,46 @@ void sort_mid_point_push(t_stack *from, t_stack *to, int mid, int chunk_size)
 	}
 }
 
+/*
+** Find index of numbers to be sent to
+** another stack. Return the one to send
+** with less instructions.
+*/
+
+int abs(int n)
+{
+	int mask;
+
+	mask = n >> 31;
+	return ((n ^ mask) - mask);
+}
+
+void	push_closest(int p, t_stack *a, t_stack *b)
+{
+	int index[2];
+	int diff[2];
+	int	i;
+
+	i = a->top;
+	while (a->array[i] < p)
+		i--;
+	index[0] = i;
+	diff[0] = abs(a->top + 1 - i);
+	i = 0;
+	while (a->array[i] < p)
+		i++;
+	index[1] = i;
+	diff[1] = abs(a->top + 1 - i);
+	if (diff[0] < diff[1])
+		run_n(RA, a, b, diff[0]);
+	else
+		run_n(RRA, a, b, diff[1]);
+	run(PB, a, b);
+}
+
 void	push_chunk(t_stack *a, t_stack *b)
 {
-	int	mid;
+	int	p;
 	int	chunk_size;
 
 	if (a->top <= 1)
@@ -41,10 +78,10 @@ void	push_chunk(t_stack *a, t_stack *b)
 	}
 	else
 	{
-		mid = pivot(a->array, a->top + 1);
+		p = pivot(a->array, a->top + 1);
 		chunk_size = a->top / 2 + a->top % 2;
-		sort_mid_point_push(a, b, mid, chunk_size);
+		sort_pivot_push(a, b, p, chunk_size);
 		push_chunk(a, b);
-		pull_chunk(a, b, chunk_size);
+		//pull_chunk(a, b, chunk_size);
 	}
 }

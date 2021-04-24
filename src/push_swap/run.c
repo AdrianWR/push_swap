@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:29:06 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/10 17:30:09 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/18 21:12:54 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,12 @@ void	run(char *op, t_stack *a, t_stack *b)
 	else if (ft_streq(op, RRB))
 		reverse_rotate(b);
 	ft_putendl_fd(op, STDOUT_FILENO);
+}
+
+void	run_n(char *op, t_stack *a, t_stack *b, int n)
+{
+	if (!n)
+		return ;
+	run(op, a, b);
+	run_n(op, a, b, n - 1);
 }
