@@ -113,6 +113,7 @@ library_src_files = libft/src/ft_atoi.c				\
 					libft/src/get_next_line.c		\
 					libstack/src/initialize.c		\
 					libstack/src/push.c				\
+					libstack/src/max.c				\
 					libstack/src/rotate.c			\
 					libstack/src/swap.c				
 library_o_files   = $(patsubst %.c,build/$(BUILD)/build/%.o,$(call library_src_files,$(1)))

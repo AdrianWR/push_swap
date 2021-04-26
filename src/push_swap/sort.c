@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 21:08:50 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/18 17:29:16 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/25 22:38:08 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,31 @@ void	pull_chunk(t_stack *a, t_stack *b, int chunk_size)
 	sort_mid_point_pull(a, b, mid, chunk_size);
 }
 
+#include <stdio.h>
+
+void pull(t_stack *a, t_stack *b)
+{
+	while (b->top != -1)
+		run(PA, a, b);
+}
+
+void	debug(t_stack *s)
+{
+	int i;
+
+	i = s->top;
+	while (i)
+		printf("--- %d ---\n", s->array[i--]);
+	printf("--- %d ---\n", s->array[i]);
+}
+
 void	sort(t_stack *stack)
 {
 	t_stack	*new;
 
 	new = initialize(stack->size);
 	push_chunk(stack, new);
+	pull(stack, new);
+	debug(stack);
 	free_stack(new);
 }

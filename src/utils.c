@@ -6,12 +6,13 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 09:37:58 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/18 15:08:27 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/25 16:29:36 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
 #include "libft.h"
+#include "stack.h"
 
 bool	atoiv(const char *str, int *n)
 {
@@ -36,7 +37,7 @@ bool	atoiv(const char *str, int *n)
 	return (overflow);
 }
 
-static void	swap(int *a, int *b)
+static void	_swap(int *a, int *b)
 {
 	int	aux;
 
@@ -51,8 +52,17 @@ void	reverse_array(int *array, size_t size)
 
 	if (i < size)
 	{
-		swap(&array[i++], &array[size - 1]);
+		_swap(&array[i++], &array[size - 1]);
 		reverse_array(array, size - 1);
 	}
 	i = 0;
 }
+
+int abs(int n)
+{
+	int mask;
+
+	mask = n >> 31;
+	return ((n ^ mask) - mask);
+}
+

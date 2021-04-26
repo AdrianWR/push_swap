@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:30:33 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/04 22:28:43 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/25 16:31:48 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	swap(t_stack *stack);
 void	push(t_stack *from, t_stack *to);
 void	rotate(t_stack *stack);
 void	reverse_rotate(t_stack *stack);
+int		max(t_stack *stack);
 
 #endif

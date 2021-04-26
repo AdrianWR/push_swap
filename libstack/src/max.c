@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   general.h                                          :+:      :+:    :+:   */
+/*   max.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/06 21:00:27 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/24 10:25:04 by aroque           ###   ########.fr       */
+/*   Created: 2021/04/25 16:29:30 by aroque            #+#    #+#             */
+/*   Updated: 2021/04/25 16:31:16 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GENERAL_H
-# define GENERAL_H
+#include "stack.h"
 
-# include "stack.h"
+static int	_max(int *array, size_t len)
+{
+	int	m;
 
-# define SPACE ' '
+	if (len == 1)
+		return (array[0]);
+	m = _max(array, len - 1);
+	if (array[len - 1] > m)
+		m = array[len - 1];
+	return (m);
+}
 
-int		abs(int n);
-bool	atoiv(const char *str, int *overflow);
-void	free_array(void **array);
-void	free_stack(t_stack *stack);
-void	message_and_exit(t_stack *stack, char **ops, int status);
-void	reverse_array(int *array, size_t size);
-t_stack	*get_stack(int size, char **args);
-
-#endif
+int	max(t_stack *stack)
+{
+	return (_max(stack->array, stack->top + 1));
+}
