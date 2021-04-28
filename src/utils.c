@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 09:37:58 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/25 16:29:36 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/27 20:11:32 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,3 +66,15 @@ int abs(int n)
 	return ((n ^ mask) - mask);
 }
 
+bool	is_sorted(t_stack *stack)
+{
+	int	i;
+
+	i = -1;
+	while (++i < stack->top)
+	{
+		if (stack->array[i + 1] < stack->array[i])
+			return (false);
+	}
+	return (true);
+}

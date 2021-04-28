@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 21:08:50 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/25 22:38:08 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/27 20:16:36 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	sort(t_stack *stack)
 {
 	t_stack	*new;
 
+	if (is_sorted(stack))
+		return ;
 	new = initialize(stack->size);
 	push_chunk(stack, new);
 	pull(stack, new);

@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/25 22:43:04 by aroque           ###   ########.fr       */
+/*   Updated: 2021/04/27 20:29:08 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,6 +299,40 @@ MU_TEST_SUITE(test_suite_sort)
 	MU_RUN_TEST(test_push_chunk);
 	//dup2(fd, STDOUT_FILENO);
 }
+
+/*
+** -------------------------
+** --- Integration Tests ---
+** -------------------------
+*/
+
+MU_TEST(test_already_sorted)
+{
+	int	child;
+
+	if ((child = fork()) < 0)
+		return ;
+	else if (child == 0)
+	{
+
+	}
+
+
+}
+
+
+MU_TEST_SUITE(test_suite_integrated)
+{
+	//int	fd;
+
+	//fd = dup(STDOUT_FILENO);
+	//close(STDOUT_FILENO);
+	MU_RUN_TEST(test_already_sorted);
+	//dup2(fd, STDOUT_FILENO);
+
+}
+
+
 
 int	main(void)
 {
