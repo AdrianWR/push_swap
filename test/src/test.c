@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/27 20:29:08 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/01 12:05:35 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,55 +239,88 @@ MU_TEST_SUITE(test_suite_general)
 ** ------------------
 */
 
-MU_TEST(test_push_closest)
+MU_TEST(test_index)
 {
 	int size = 12;
 	int list[] = { 11, 8, 1, 4, 7, 9, 6, 10, 12, 5, 3, 2 };
 
 	t_stack	*a;
-	t_stack	*b;
 
 	a = initialize(64);
-	b = initialize(64);
 	memcpy(a->array, list, size * sizeof(*list));
 	a->top = 11;
-	push_closest(7, a, b);
-	mu_assert_int_eq(2, b->array[0]);
-	push_closest(7, a, b);
-	mu_assert_int_eq(3, b->array[1]);
-	push_closest(7, a, b);
-	mu_assert_int_eq(5, b->array[2]);
-	push_closest(7, a, b);
-	mu_assert_int_eq(6, b->array[3]);
-	push_closest(7, a, b);
-	mu_assert_int_eq(6, b->array[0]);
-	mu_assert_int_eq(5, b->array[1]);
-	mu_assert_int_eq(2, b->array[2]);
-	mu_assert_int_eq(3, b->array[3]);
-}
+	index_stack(&a);
+	mu_assert_int_eq(10, a->array[0]);
+	mu_assert_int_eq(7, a->array[1]);
+	mu_assert_int_eq(0, a->array[2]);
+	mu_assert_int_eq(3, a->array[3]);
+	mu_assert_int_eq(6, a->array[4]);
+	mu_assert_int_eq(8, a->array[5]);
+	mu_assert_int_eq(1, a->array[11]);
+	free_stack(a);
 
-
-MU_TEST(test_push_chunk)
-{
-	int size = 12;
-	int list[] = { 11, 8, 1, 4, 7, 9, 6, 10, 12, 5, 3, 2 };
-
-	t_stack	*a;
-	t_stack	*b;
+	size = 7;
+	int list2[] = { -2147483648, 2100, 220010, -1, 7, 210815, 121 };
 
 	a = initialize(64);
-	b = initialize(64);
-	memcpy(a->array, list, size * sizeof(*list));
-	a->top = 11;
-	push_chunk(a, b);
-	mu_assert_int_eq(-1, a->top);
-	mu_assert_int_eq(1, b->array[0]);
-	mu_assert_int_eq(2, b->array[1]);
-	mu_assert_int_eq(3, b->array[2]);
-	mu_assert_int_eq(4, b->array[3]);
-	mu_assert_int_eq(5, b->array[4]);
-	mu_assert_int_eq(6, b->array[5]);
+	memcpy(a->array, list2, size * sizeof(*list));
+	a->top = 6;
+	index_stack(&a);
+	mu_assert_int_eq(0, a->array[0]);
+	mu_assert_int_eq(4, a->array[1]);
+	mu_assert_int_eq(6, a->array[2]);
+	mu_assert_int_eq(1, a->array[3]);
 }
+
+//MU_TEST(test_push_closest)
+//{
+//	int size = 12;
+//	int list[] = { 11, 8, 1, 4, 7, 9, 6, 10, 12, 5, 3, 2 };
+//
+//	t_stack	*a;
+//	t_stack	*b;
+//
+//	a = initialize(64);
+//	b = initialize(64);
+//	memcpy(a->array, list, size * sizeof(*list));
+//	a->top = 11;
+//	push_closest(7, a, b);
+//	mu_assert_int_eq(2, b->array[0]);
+//	push_closest(7, a, b);
+//	mu_assert_int_eq(3, b->array[1]);
+//	push_closest(7, a, b);
+//	mu_assert_int_eq(5, b->array[2]);
+//	push_closest(7, a, b);
+//	mu_assert_int_eq(6, b->array[3]);
+//	push_closest(7, a, b);
+//	mu_assert_int_eq(6, b->array[0]);
+//	mu_assert_int_eq(5, b->array[1]);
+//	mu_assert_int_eq(2, b->array[2]);
+//	mu_assert_int_eq(3, b->array[3]);
+//}
+//
+//
+//MU_TEST(test_push_chunk)
+//{
+//	int size = 12;
+//	int list[] = { 11, 8, 1, 4, 7, 9, 6, 10, 12, 5, 3, 2 };
+//
+//	t_stack	*a;
+//	t_stack	*b;
+//
+//	a = initialize(64);
+//	b = initialize(64);
+//	memcpy(a->array, list, size * sizeof(*list));
+//	a->top = 11;
+//	push_chunk(a, b);
+//	mu_assert_int_eq(-1, a->top);
+//	mu_assert_int_eq(1, b->array[0]);
+//	mu_assert_int_eq(2, b->array[1]);
+//	mu_assert_int_eq(3, b->array[2]);
+//	mu_assert_int_eq(4, b->array[3]);
+//	mu_assert_int_eq(5, b->array[4]);
+//	mu_assert_int_eq(6, b->array[5]);
+//}
 
 MU_TEST_SUITE(test_suite_sort)
 {
@@ -295,8 +328,9 @@ MU_TEST_SUITE(test_suite_sort)
 
 	//fd = dup(STDOUT_FILENO);
 	//close(STDOUT_FILENO);
-	MU_RUN_TEST(test_push_closest);
-	MU_RUN_TEST(test_push_chunk);
+	MU_RUN_TEST(test_index);
+	//MU_RUN_TEST(test_push_closest);
+	//MU_RUN_TEST(test_push_chunk);
 	//dup2(fd, STDOUT_FILENO);
 }
 
@@ -306,31 +340,39 @@ MU_TEST_SUITE(test_suite_sort)
 ** -------------------------
 */
 
-MU_TEST(test_already_sorted)
-{
-	int	child;
+#include <sys/types.h>
+#include <sys/wait.h>
 
-	if ((child = fork()) < 0)
-		return ;
-	else if (child == 0)
-	{
+//MU_TEST(test_already_sorted)
+//{
+//	int	child;
+//
+//	if ((child = fork()) < 0)
+//		return ;
+//	else if (child == 0)
+//	{
+//		execlp("./push_swap", "")
+//
+//	}
+//	else
+//	{
+//		wait(NULL);
+//	}
+//
+//
+//}
 
-	}
 
-
-}
-
-
-MU_TEST_SUITE(test_suite_integrated)
-{
-	//int	fd;
-
-	//fd = dup(STDOUT_FILENO);
-	//close(STDOUT_FILENO);
-	MU_RUN_TEST(test_already_sorted);
-	//dup2(fd, STDOUT_FILENO);
-
-}
+//MU_TEST_SUITE(test_suite_integrated)
+//{
+//	//int	fd;
+//
+//	//fd = dup(STDOUT_FILENO);
+//	//close(STDOUT_FILENO);
+//	MU_RUN_TEST(test_already_sorted);
+//	//dup2(fd, STDOUT_FILENO);
+//
+//}
 
 
 
@@ -339,6 +381,7 @@ int	main(void)
 	MU_RUN_SUITE(test_suite_stack);
 	MU_RUN_SUITE(test_suite_general);
 	MU_RUN_SUITE(test_suite_sort);
+	//MU_RUN_SUITE(test_suite_integrated);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }

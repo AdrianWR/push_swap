@@ -50,6 +50,7 @@ PUSH_SWAP_SRC_FILES	=	push_swap.c		\
 						sort.c			\
 						push_chunk.c	\
 						mid.c			\
+						index.c			\
 						run.c
 PUSH_SWAP_O_FILES	= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(PUSH_SWAP_SRC_FILES)) $(O_FILES)
 

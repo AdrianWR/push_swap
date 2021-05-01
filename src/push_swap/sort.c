@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 21:08:50 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/27 20:16:36 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/01 11:52:30 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,34 @@ void	debug(t_stack *s)
 	printf("--- %d ---\n", s->array[i]);
 }
 
+void	sort_tri(t_stack *a, t_stack *b)
+{
+	(void)a;
+	(void)b;
+
+}
+
+void	sort_complex(t_stack *a, t_stack *b)
+{
+	push_chunk(a, b);
+	pull(a, b);
+}
+
+
 void	sort(t_stack *stack)
 {
 	t_stack	*new;
 
-	if (is_sorted(stack))
+	if (is_sorted(stack) || stack->top <= 0)
 		return ;
 	new = initialize(stack->size);
-	push_chunk(stack, new);
-	pull(stack, new);
-	debug(stack);
+	index_stack(&stack);
+	if (stack->top == 1)
+		run(SA, stack, NULL);
+	else if (stack->top == 2)
+		sort_tri(stack, new);
+	else
+		sort_complex(stack, new);
+	//debug(stack);
 	free_stack(new);
 }

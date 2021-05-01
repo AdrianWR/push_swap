@@ -6,30 +6,12 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:57:26 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/18 16:06:58 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/01 11:49:35 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static void	insertion_sort(int array[], size_t size)
-{
-	int				i;
-	unsigned int	j;
-	int				key;
-
-	j = 1;
-	while (j < size)
-	{
-		i = j - 1;
-		key = array[j++];
-		while (i >= 0 && array[i + 1] < array[i])
-		{
-			array[i + 1] = array[i];
-			array[i--] = key;
-		}
-	}
-}
+#include "general.h"
 
 int	pivot(int *chunk, size_t size)
 {
@@ -45,3 +27,5 @@ int	pivot(int *chunk, size_t size)
 	free(copy);
 	return (mid);
 }
+
+

@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 09:37:58 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/27 20:11:32 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/01 11:23:13 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,23 @@ bool	is_sorted(t_stack *stack)
 			return (false);
 	}
 	return (true);
+}
+
+void	insertion_sort(int array[], size_t size)
+{
+	int				i;
+	unsigned int	j;
+	int				key;
+
+	j = 1;
+	while (j < size)
+	{
+		i = j - 1;
+		key = array[j++];
+		while (i >= 0 && array[i + 1] < array[i])
+		{
+			array[i + 1] = array[i];
+			array[i--] = key;
+		}
+	}
 }
