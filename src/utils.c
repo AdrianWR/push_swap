@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 09:37:58 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/01 11:23:13 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/01 13:13:59 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool	is_sorted(t_stack *stack)
 	i = -1;
 	while (++i < stack->top)
 	{
-		if (stack->array[i + 1] < stack->array[i])
+		if (stack->array[i + 1] > stack->array[i])
 			return (false);
 	}
 	return (true);

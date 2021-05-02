@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/01 12:05:35 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/01 18:19:16 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,23 @@ MU_TEST(test_max)
 	mu_assert_int_eq(9, max(a));
 	a->top = 2;
 	mu_assert_int_eq(4, max(a));
+	free_stack(a);
+}
+
+MU_TEST(test_min)
+{
+	t_stack	*a;
+
+	a = initialize(5);
+	a->array[0] = 4;
+	a->array[1] = 1;
+	a->array[2] = 2;
+	a->array[3] = -2;
+	a->top = 3;
+	mu_assert_int_eq(-2, min(a));
+	a->top = 2;
+	mu_assert_int_eq(1, min(a));
+	free_stack(a);
 }
 
 MU_TEST_SUITE(test_suite_stack)
@@ -152,6 +169,7 @@ MU_TEST_SUITE(test_suite_stack)
 	MU_RUN_TEST(test_reverse_rotate);
 	MU_RUN_TEST(test_reverse_rotate_null);
 	MU_RUN_TEST(test_max);
+	MU_RUN_TEST(test_min);
 }
 
 /*

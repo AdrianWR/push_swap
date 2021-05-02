@@ -48,6 +48,7 @@ CHECKER_O_FILES		= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(CHECKER_SRC_FILES)
 
 PUSH_SWAP_SRC_FILES	=	push_swap.c		\
 						sort.c			\
+						sort_small.c	\
 						push_chunk.c	\
 						mid.c			\
 						index.c			\
@@ -115,6 +116,7 @@ library_src_files = libft/src/ft_atoi.c				\
 					libstack/src/initialize.c		\
 					libstack/src/push.c				\
 					libstack/src/max.c				\
+					libstack/src/min.c				\
 					libstack/src/rotate.c			\
 					libstack/src/swap.c				
 library_o_files   = $(patsubst %.c,build/$(BUILD)/build/%.o,$(call library_src_files,$(1)))

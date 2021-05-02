@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.h                                            :+:      :+:    :+:   */
+/*   min.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/26 15:30:33 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/01 18:19:26 by aroque           ###   ########.fr       */
+/*   Created: 2021/05/01 18:15:39 by aroque            #+#    #+#             */
+/*   Updated: 2021/05/01 18:16:36 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_H
-# define STACK_H
+#include "stack.h"
 
-# include <stdlib.h>
-# include <stdbool.h>
-
-typedef struct s_stack
+static int	_min(int *array, size_t len)
 {
-	int				top;
-	unsigned int	size;
-	int				*array;
-}					t_stack;
+	int	m;
 
-t_stack	*initialize(unsigned int size);
-void	swap(t_stack *stack);
-void	push(t_stack *from, t_stack *to);
-void	rotate(t_stack *stack);
-void	reverse_rotate(t_stack *stack);
-int		max(t_stack *stack);
-int		min(t_stack *stack);
+	if (len == 1)
+		return (array[0]);
+	m = _min(array, len - 1);
+	if (array[len - 1] < m)
+		m = array[len - 1];
+	return (m);
+}
 
-#endif
+int	min(t_stack *stack)
+{
+	return (_min(stack->array, stack->top + 1));
+}
