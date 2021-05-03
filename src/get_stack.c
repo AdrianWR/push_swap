@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 23:27:40 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/30 21:39:51 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/02 19:24:39 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_stack	*get_stack(int size, char **args)
 		exit(0);
 	i = 0;
 	status = 0;
-	stack = initialize(1024);
+	stack = initialize(STACK_BUFFER);
 	while (args[i] && !status)
 		status = fill_element(stack, args[i++]);
 	if (status)

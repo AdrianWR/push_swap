@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 22:25:18 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/08 09:05:48 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/02 19:41:31 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char *argv[])
 	t_stack	*stack;
 
 	stack = get_stack(argc - 1, &argv[1]);
+	index_stack(&stack);
 	sort(stack);
 	free_stack(stack);
 	return (0);

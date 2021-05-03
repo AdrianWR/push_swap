@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 21:00:27 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/01 11:22:42 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/02 19:24:54 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "stack.h"
 
 # define SPACE ' '
+# define STACK_BUFFER 1024
 
 int		abs(int n);
 bool	atoiv(const char *str, int *overflow);
