@@ -49,6 +49,7 @@ CHECKER_O_FILES		= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(CHECKER_SRC_FILES)
 PUSH_SWAP_SRC_FILES	=	push_swap.c		\
 						sort.c			\
 						sort_small.c	\
+						smart.c			\
 						push_chunk.c	\
 						mid.c			\
 						index.c			\
