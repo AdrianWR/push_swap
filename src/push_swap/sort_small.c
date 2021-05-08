@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 16:52:54 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/02 22:41:20 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/08 16:43:44 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,18 @@ static void	sort_tri(t_stack *a)
 		run(RRA, a, NULL);
 }
 
-
 #include <stdio.h>
-
 
 static void	put_top_in_position(t_stack *a, t_stack *b)
 {
-	int	tb;
+	int	top_b;
+	int to_move;
 
-	tb = b->array[b->top];
-	smart_rotate(a, closest_above(a, tb));
+	top_b = b->array[b->top];
+	to_move = closest_above(a, top_b);
+	if (to_move == top_b)
+		to_move = min(a);
+	smart_rotate(a, to_move);
 	run(PA, a, b);
 }
 
