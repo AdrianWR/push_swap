@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 14:50:26 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/09 22:49:56 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/10 10:07:07 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	sort_complex(t_stack *a, t_stack *b)
 		chunks--;
 	}
 	sort_chunk(a, b, min(a), max(a));
-	smart_rotate(b, max(b));
+	smart_rotate_b(b, max(b));
 	while (b->top >= 0)
 		run(PA, a, b);
 }
