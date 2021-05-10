@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 16:52:54 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/08 16:43:44 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/09 18:05:25 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ static void	sort_tri(t_stack *a)
 	else if (arr[0] < arr[1] && arr[1] > arr[2] && arr[2] > arr[0])
 		run(RRA, a, NULL);
 }
-
-#include <stdio.h>
 
 static void	put_top_in_position(t_stack *a, t_stack *b)
 {

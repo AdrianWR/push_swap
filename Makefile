@@ -111,11 +111,11 @@ library_src_files = libft/src/ft_atoi.c			\
 					libft/src/ft_memchr.c		\
 					libft/src/ft_strlen.c		\
 					libft/src/ft_strncmp.c		\
-					libft/src/ft_strreplace.	\
+					libft/src/ft_strreplace.c	\
 					libft/src/ft_streq.c		\
 					libft/src/ft_lstclear.c		\
-					libft/src/get_next_line.	\
-					libstack/src/initialize.	\
+					libft/src/get_next_line.c	\
+					libstack/src/initialize.c	\
 					libstack/src/push.c			\
 					libstack/src/max.c			\
 					libstack/src/min.c			\
@@ -192,7 +192,11 @@ endef
 
 $(foreach lib,$(LIBRARY_FOLDERS),$(eval $(call library_variables,$(lib))))
 	
-build/$(BUILD)/lib/lib%.a: $$(call library_o_files,%)
+build/$(BUILD)/lib/libft.a: $$(call library_o_files,%)
+	mkdir -p $(@D)
+	$(AR) rcs $@ $^
+
+build/$(BUILD)/lib/libstack.a: $$(call library_o_files,%)
 	mkdir -p $(@D)
 	$(AR) rcs $@ $^
 
