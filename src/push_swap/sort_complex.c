@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 14:50:26 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/10 10:07:07 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/10 14:18:28 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,13 @@ size_t	get_chunks(t_stack *a)
 	return (chunks);
 }
 
+void	put_chunk_back(t_stack *a, t_stack *b)
+{
+	smart_rotate_b(b, max(b));
+	while (b->top >= 0)
+		run(PA, a, b);
+}
+
 void	sort_complex(t_stack *a, t_stack *b)
 {
 	int	limit;
@@ -111,10 +118,9 @@ void	sort_complex(t_stack *a, t_stack *b)
 	{
 		limit = size / chunks - 1;
 		sort_chunk(a, b, min(a), limit);
+		put_chunk_back(a, b);
 		chunks--;
 	}
 	sort_chunk(a, b, min(a), max(a));
-	smart_rotate_b(b, max(b));
-	while (b->top >= 0)
-		run(PA, a, b);
+	put_chunk_back(a, b);
 }
