@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 14:50:26 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/10 14:18:28 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/18 20:55:51 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ size_t	get_chunks(t_stack *a)
 	size_t	chunks;
 	
 	(void) a;
-	chunks = 5;
+	chunks = 3;
 	return (chunks);
 }
 

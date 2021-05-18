@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:29:06 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/18 21:12:54 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/18 20:42:39 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	run(char *op, t_stack *a, t_stack *b)
 
 void	run_n(char *op, t_stack *a, t_stack *b, int n)
 {
-	if (!n)
+	if (n <= 0)
 		return ;
 	run(op, a, b);
 	run_n(op, a, b, n - 1);
