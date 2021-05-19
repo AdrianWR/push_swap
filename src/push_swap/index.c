@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 11:48:02 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/01 12:06:25 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/18 22:33:46 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,15 @@ void	index_stack(t_stack **stack)
 	}
 	free(copy);
 	ft_memcpy((*stack)->array, array, ((*stack)->top + 1) * sizeof(*array));
+}
+
+int _index(t_stack *stack, int n)
+{
+	int i;
+
+	i = stack->top;
+	while (stack->array[i] != n && i >= 0)
+		i--;
+	return (i);
+
 }

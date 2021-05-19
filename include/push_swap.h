@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 21:09:58 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/09 22:16:31 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/18 21:47:04 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define RRA "rra"
 # define RRB "rrb"
 
+int		_index(t_stack *stack, int n);
 int		pivot(int *chunk, size_t size);
 void	sort(t_stack *stack);
 void	run(char *op, t_stack *a, t_stack *b);
