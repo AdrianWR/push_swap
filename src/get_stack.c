@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 23:27:40 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/02 19:24:39 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:53:50 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ bool	validate_int(char *elem)
 	{
 		if (elem[i] == '-' && cm < 1)
 			cm++;
-		else if (!ft_isdigit(elem[i++]))
+		else if (!ft_isdigit(elem[i]))
 			is_int = false;
+		i++;
 	}
 	return (!is_int);
 }
