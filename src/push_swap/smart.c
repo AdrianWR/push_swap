@@ -6,11 +6,10 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 22:40:51 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/09 22:44:06 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:44:33 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
 #include "push_swap.h"
 
 /*
@@ -20,8 +19,8 @@
 
 int	closest_above(t_stack *a, int n)
 {
-	int k;
-	int i;
+	int	k;
+	int	i;
 
 	if (a->top < 0 || n > max(a))
 		return (n);
@@ -38,8 +37,8 @@ int	closest_above(t_stack *a, int n)
 
 int	closest_below(t_stack *a, int n)
 {
-	int k;
-	int i;
+	int	k;
+	int	i;
 
 	if (a->top < 0 || n < min(a))
 		return (n);
@@ -60,7 +59,7 @@ int	closest_below(t_stack *a, int n)
 ** or RA). Do nothing if 'n' isn't on stack;
 */
 
-void	smart_rotate(t_stack *a, int n)
+void	smart_rotate_a(t_stack *a, int n)
 {
 	int	find;
 

@@ -6,11 +6,10 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 16:52:54 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/09 18:05:25 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:44:23 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
 #include "push_swap.h"
 
 static void	sort_tri(t_stack *a)
@@ -39,13 +38,13 @@ static void	sort_tri(t_stack *a)
 static void	put_top_in_position(t_stack *a, t_stack *b)
 {
 	int	top_b;
-	int to_move;
+	int	to_move;
 
 	top_b = b->array[b->top];
 	to_move = closest_above(a, top_b);
 	if (to_move == top_b)
 		to_move = min(a);
-	smart_rotate(a, to_move);
+	smart_rotate_a(a, to_move);
 	run(PA, a, b);
 }
 
@@ -55,7 +54,7 @@ static void	sort_tri_complex(t_stack *a, t_stack *b)
 	sort_tri(a);
 	while (b->top >= 0)
 		put_top_in_position(a, b);
-	smart_rotate(a, 0);
+	smart_rotate_a(a, 0);
 }
 
 void	sort_small(t_stack *a, t_stack *b)

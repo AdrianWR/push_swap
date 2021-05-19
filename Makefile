@@ -37,7 +37,8 @@ vpath %.c src src/checker src/push_swap
 SRC_FILES			=	get_stack.c	\
 						search.c	\
 						free.c		\
-						utils.c
+						utils.c		\
+						utils_sort.c
 O_FILES				= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(SRC_FILES))
 
 CHECKER_SRC_FILES	=	checker.c		\
@@ -51,9 +52,8 @@ PUSH_SWAP_SRC_FILES	=	push_swap.c		\
 						sort_small.c	\
 						sort_complex.c	\
 						smart.c			\
-						push_chunk.c	\
-						pivot.c			\
 						index.c			\
+						move.c			\
 						run.c
 PUSH_SWAP_O_FILES	= 	$(patsubst %.c,build/$(BUILD)/build/%.o,$(PUSH_SWAP_SRC_FILES)) $(O_FILES)
 

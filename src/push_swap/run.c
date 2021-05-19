@@ -6,13 +6,12 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:29:06 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/18 20:42:39 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:44:41 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "push_swap.h"
-#include "stack.h"
 #include "libft.h"
 
 void	run(char *op, t_stack *a, t_stack *b)

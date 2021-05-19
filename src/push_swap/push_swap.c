@@ -6,11 +6,10 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 22:25:18 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/02 19:41:31 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:44:48 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
 #include "general.h"
 #include "push_swap.h"
 

@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use List::Util 'shuffle';
-use IPC::Run3 qw(run3);		# Install libperlipc3
+use IPC::Run3 qw(run3);		# Install libipc-run3-perl
 
 sub usage {
     return "$0 <stack_size>

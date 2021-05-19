@@ -6,13 +6,12 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 11:48:02 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/19 15:00:44 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:45:14 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
-#include "general.h"
 #include "libft.h"
+#include "general.h"
 
 static int	*sorted_array_copy(t_stack *stack)
 {
@@ -31,9 +30,10 @@ void	index_stack(t_stack **stack)
 	int		*copy;
 	int		i;
 	size_t	pos;
-	int		array[(*stack)->top + 1];
+	int		*array;
 
 	i = 0;
+	array = ft_calloc((*stack)->top + 1, sizeof(*array));
 	copy = sorted_array_copy(*stack);
 	while (i <= (*stack)->top)
 	{
@@ -42,13 +42,14 @@ void	index_stack(t_stack **stack)
 			pos++;
 		array[i++] = pos;
 	}
-	free(copy);
 	ft_memcpy((*stack)->array, array, ((*stack)->top + 1) * sizeof(*array));
+	free(copy);
+	free(array);
 }
 
-int _index(t_stack *stack, int n)
+int	_index(t_stack *stack, int n)
 {
-	int i;
+	int	i;
 
 	i = stack->top;
 	while (stack->array[i] != n && i >= 0)
