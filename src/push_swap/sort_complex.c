@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 14:50:26 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/18 20:55:51 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 00:21:58 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int find_from_bottom(t_stack *a, int min, int max)
 	return (-1);
 }
 
-static void move_to_top(t_stack *a, int min, int max)
+void move_to_top(t_stack *a, int min, int max)
 {
 	int i;
 	int index[2];
@@ -61,23 +61,43 @@ static void move_to_top(t_stack *a, int min, int max)
 	smart_rotate(a, a->array[i]);
 }
 
-static void	put_in_position(t_stack *a, t_stack *b)
+void	move_min_max_to_top(t_stack *b)
 {
-	int	top_a;
-	int to_move;
+	int i;
+	int index[2];
 
-	if (b->top >= 0)
-	{
-		top_a = a->array[a->top];
-		to_move = closest_below(b, top_a);
-		if (to_move == top_a)
-			to_move = max(b);
-		smart_rotate_b(b, to_move);
-	}
-	run(PB, a, b);
+	index[0] = _index(b, min(b));
+	index[1] = _index(b, max(b));
+	if (index[0] < b->top - index[1])
+		i = index[0];
+	else
+		i = index[1];
+	smart_rotate_b(b, b->array[i]);
 }
 
-static void	sort_chunk(t_stack *a, t_stack *b, int min, int max)
+void	put_in_position(t_stack *a, t_stack *b)
+{
+	int	top_b;
+	int to_move;
+
+	top_b = b->array[b->top];
+	to_move = closest_above(a, top_b);
+	if (to_move == top_b && a->top >= 0)
+		to_move = min(a);
+	smart_rotate(a, to_move);
+	run(PA, a, b);
+}
+
+void	sort_chunk(t_stack *a, t_stack *b)
+{
+	while (b->top >= 0)
+	{
+		move_min_max_to_top(b);
+		put_in_position(a, b);
+	}
+}
+
+void	move_chunk(t_stack *a, t_stack *b, int min, int max)
 {
 	int size;
 
@@ -85,7 +105,7 @@ static void	sort_chunk(t_stack *a, t_stack *b, int min, int max)
 	while (size)
 	{
 		move_to_top(a, min, max);
-		put_in_position(a, b);
+		run(PB, a, b);
 		size--;
 	}
 }
@@ -95,32 +115,30 @@ size_t	get_chunks(t_stack *a)
 	size_t	chunks;
 	
 	(void) a;
-	chunks = 3;
+	chunks = 2;
 	return (chunks);
-}
-
-void	put_chunk_back(t_stack *a, t_stack *b)
-{
-	smart_rotate_b(b, max(b));
-	while (b->top >= 0)
-		run(PA, a, b);
 }
 
 void	sort_complex(t_stack *a, t_stack *b)
 {
-	int	limit;
-	int	size;
+	int	limit_min;
+	int	limit_max;
 	size_t	chunks;
+	size_t	step;
 
 	chunks = get_chunks(a);
-	size = a->top + 1;
-	while (chunks > 1)
+	limit_min = min(a);
+	step = (a->top + 1) / chunks;
+	while (chunks >= 1)
 	{
-		limit = size / chunks - 1;
-		sort_chunk(a, b, min(a), limit);
-		put_chunk_back(a, b);
+		if (chunks == 1)
+			limit_max = max(a);
+		else 
+			limit_max = limit_min + step - 1;
+		move_chunk(a, b, limit_min, limit_max);
+		sort_chunk(a, b);
+		limit_min = limit_max + 1;
 		chunks--;
 	}
-	sort_chunk(a, b, min(a), max(a));
-	put_chunk_back(a, b);
+	smart_rotate(a, min(a));
 }
