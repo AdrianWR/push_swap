@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 11:44:53 by aroque            #+#    #+#             */
-/*   Updated: 2020/01/22 13:02:13 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:40:38 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t len;
-	size_t i;
+	size_t	len;
+	size_t	i;
 
 	i = 0;
 	len = ft_strlen(src);

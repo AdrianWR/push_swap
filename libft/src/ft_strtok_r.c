@@ -6,13 +6,13 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 00:05:28 by aroque            #+#    #+#             */
-/*   Updated: 2021/01/05 21:31:02 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:42:13 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strtok_r(char *str, const char *delim, char **save_ptr)
+char	*ft_strtok_r(char *str, const char *delim, char **save_ptr)
 {
 	char	*end;
 

@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 16:40:32 by aroque            #+#    #+#             */
-/*   Updated: 2021/01/31 18:53:20 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:33:08 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	replace_s(char **newstr, char *p, const char *r, size_t slen)
 	free(old);
 }
 
-char		*ft_strreplace(char **s, const char *search, const char *replace)
+char	*ft_strreplace(char **s, const char *search, const char *replace)
 {
 	char	*p;
 	char	*newstr;
@@ -46,8 +46,12 @@ char		*ft_strreplace(char **s, const char *search, const char *replace)
 	newstr = ft_strdup(*s);
 	search_len = ft_strlen(search);
 	replace_len = ft_strlen(replace);
-	while ((p = ft_strnstr(newstr, search, ft_strlen(newstr))))
+	p = ft_strnstr(newstr, search, ft_strlen(newstr));
+	while (p)
+	{
+		p = ft_strnstr(newstr, search, ft_strlen(newstr));
 		replace_s(&newstr, p, replace, search_len);
+	}
 	free(*s);
 	*s = newstr;
 	return (*s);

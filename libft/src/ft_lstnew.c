@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:46:42 by aroque            #+#    #+#             */
-/*   Updated: 2020/08/16 16:28:27 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:43:46 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list *lst;
+	t_list	*lst;
 
-	if (!(lst = malloc(sizeof(t_list))))
+	lst = malloc(sizeof(t_list));
+	if (!lst)
 		return (0);
 	lst->content = content;
 	lst->previous = NULL;

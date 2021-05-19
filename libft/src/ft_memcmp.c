@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memcmp.c                                           :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:47:51 by aroque            #+#    #+#             */
-/*   Updated: 2020/01/24 18:40:53 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:41:57 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char *c1;
-	unsigned char *c2;
+	unsigned char	*c1;
+	unsigned char	*c2;
 
 	c1 = (unsigned char *)s1;
 	c2 = (unsigned char *)s2;

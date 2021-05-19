@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 11:14:54 by aroque            #+#    #+#             */
-/*   Updated: 2020/09/11 23:24:19 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:31:04 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 ** os identified, the function returns 0 (zero).
 */
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int n;
-	int aux;
-	int signal;
+	int	n;
+	int	aux;
+	int	signal;
 
 	n = 0;
 	aux = 0;

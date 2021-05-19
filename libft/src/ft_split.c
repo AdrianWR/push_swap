@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 06:04:57 by aroque            #+#    #+#             */
-/*   Updated: 2020/05/12 22:42:48 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:38:59 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 static int	word_count(const char *str, char c)
 {
-	int i;
-	int trigger;
+	int	i;
+	int	trigger;
 
 	i = 0;
 	trigger = 0;
@@ -63,19 +63,18 @@ static char	*word_dup(const char *str, int start, int finish)
 **	is made according the separator c.
 */
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	size_t	i;
 	size_t	j;
 	int		index;
 	char	**split;
 
-	if (!s)
-		return (NULL);
 	i = 0;
 	j = 0;
 	index = -1;
-	if (!(split = malloc((word_count(s, c) + 1) * sizeof(*split))))
+	split = malloc((word_count(s, c) + 1) * sizeof(*split));
+	if (!split)
 		return (NULL);
 	while (i <= ft_strlen(s))
 	{

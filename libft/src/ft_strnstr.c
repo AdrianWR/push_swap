@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:12:52 by aroque            #+#    #+#             */
-/*   Updated: 2020/01/24 17:57:00 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:39:40 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t needle_len;
+	size_t	needle_len;
 
 	needle_len = ft_strlen(needle);
 	if (!needle_len)

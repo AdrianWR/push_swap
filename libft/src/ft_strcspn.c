@@ -6,13 +6,13 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 23:21:03 by aroque            #+#    #+#             */
-/*   Updated: 2021/01/04 08:53:07 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:41:26 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t			ft_strcspn(const char *s, const char *reject)
+size_t	ft_strcspn(const char *s, const char *reject)
 {
 	size_t	i;
 	size_t	n;

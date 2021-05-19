@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 03:55:14 by aroque            #+#    #+#             */
-/*   Updated: 2020/01/24 18:53:20 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:43:21 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	ft_right_trim(char const *s1, char const *set, size_t len)
 	return (len + 1);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*trim;
 	int		lt;
@@ -47,8 +47,10 @@ char		*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	lt = ft_left_trim(s1, set);
 	rt = ft_right_trim(s1, set, ft_strlen(s1) - 1);
-	rt < lt ? rt = lt : rt;
-	if (!(trim = malloc((rt - lt + 1) * sizeof(*trim))))
+	if (rt < lt)
+		rt = lt;
+	trim = malloc((rt - lt + 1) * sizeof(*trim));
+	if (!trim)
 		return (NULL);
 	ft_strlcpy(trim, &s1[lt], rt - lt + 1);
 	return (trim);

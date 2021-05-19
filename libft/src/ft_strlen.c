@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 11:21:14 by aroque            #+#    #+#             */
-/*   Updated: 2021/02/03 22:09:52 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:34:53 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@
 
 size_t	ft_strlen(const char *s)
 {
-	return (*s ? ft_strlen(++s) + 1 : 0);
+	if (!*s)
+		return (0);
+	return (ft_strlen(s + 1) + 1);
 }

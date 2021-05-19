@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 22:22:05 by aroque            #+#    #+#             */
-/*   Updated: 2020/01/24 20:06:05 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:44:16 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list *map;
+	t_list	*map;
 
 	if (!lst)
 		return (NULL);
 	else
 	{
-		if (!(map = ft_lstnew(f(lst->content))))
+		map = ft_lstnew(f(lst->content));
+		if (!map)
 		{
 			ft_lstclear(&map, del);
 			return (NULL);

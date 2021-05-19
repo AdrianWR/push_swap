@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 11:50:29 by aroque            #+#    #+#             */
-/*   Updated: 2021/04/04 22:45:04 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:53:03 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static int	result(char **line, char **readed_line, int fd, int readed)
 	int		len;
 	char	*tmp;
 
+	*line = ft_strdup("");
 	if (readed < 0)
 		return (-1);
-	else if (readed == 0 && readed_line[fd] == NULL
-		&& (*line = ft_strdup("")))
+	else if (readed == 0 && readed_line[fd] == NULL && *line)
 		return (0);
 	len = 0;
 	while (readed_line[fd][len] != '\n' && readed_line[fd][len] != '\0')
@@ -50,29 +50,35 @@ static int	result(char **line, char **readed_line, int fd, int readed)
 	return (0);
 }
 
+void	paste_line(char **readed_line, char *buff)
+{
+	char		*tmp;
+
+	tmp = ft_strjoin(*readed_line, buff);
+	free(*readed_line);
+	*readed_line = tmp;
+}
+
 int	get_next_line(int fd, char **line)
 {
 	static char	*readed_line[OPEN_MAX];
 	char		*buff;
 	int			readed;
-	char		*tmp;
 
 	if (fd < 0 || line == NULL || BUFFER_SIZE < 1)
 		return (-1);
 	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!(buff))
 		return (-1);
-	while ((readed = read(fd, buff, BUFFER_SIZE)) > 0)
+	readed = 1;
+	while (readed > 0)
 	{
+		readed = read(fd, buff, BUFFER_SIZE);
 		buff[readed] = '\0';
 		if (!(readed_line[fd]))
 			readed_line[fd] = ft_strdup(buff);
 		else
-		{
-			tmp = ft_strjoin(readed_line[fd], buff);
-			free(readed_line[fd]);
-			readed_line[fd] = tmp;
-		}
+			paste_line(&readed_line[fd], buff);
 		if (ft_strchr(buff, '\n'))
 			break ;
 	}

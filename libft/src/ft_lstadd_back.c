@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 18:39:17 by aroque            #+#    #+#             */
-/*   Updated: 2020/08/16 16:43:53 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:35:55 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list *last;
+	t_list	*last;
 
 	if (!*lst)
 		*lst = new;

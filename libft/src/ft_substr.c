@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 02:11:40 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/15 14:44:06 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:37:35 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	i = 0;
 	slen = ft_strlen(s);
-	if (!(substr = malloc((len + 1) * sizeof(*substr))))
+	substr = malloc((len + 1) * sizeof(*substr));
+	if (!substr)
 		return (0);
 	while ((i < len) && (start + i) < slen)
 	{

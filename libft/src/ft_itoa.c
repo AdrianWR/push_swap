@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:55:56 by aroque            #+#    #+#             */
-/*   Updated: 2020/01/25 22:23:59 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:44:54 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static size_t	ft_digit_counter(int n)
 **	representation.
 */
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	unsigned int	nbr;
 	size_t			len;
@@ -39,8 +39,9 @@ char			*ft_itoa(int n)
 	}
 	else
 		nbr = (unsigned int)n;
-	if (!(s = malloc((len + 1) * sizeof(*s))))
-		return (0);
+	s = malloc((len + 1) * sizeof(*s));
+	if (!s)
+		return (NULL);
 	s[len] = '\0';
 	while (len--)
 	{

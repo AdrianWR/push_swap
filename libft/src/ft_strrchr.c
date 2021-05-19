@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:22:43 by aroque            #+#    #+#             */
-/*   Updated: 2020/01/22 13:34:36 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:39:24 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t len;
+	size_t	len;
 
 	len = ft_strlen(s) + 1;
 	while (len--)

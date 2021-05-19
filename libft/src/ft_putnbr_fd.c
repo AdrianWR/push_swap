@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 11:37:51 by aroque            #+#    #+#             */
-/*   Updated: 2020/01/22 11:42:20 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:41:41 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int nb;
+	unsigned int	nb;
 
 	nb = 0;
 	if (n < 0)
