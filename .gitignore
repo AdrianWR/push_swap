@@ -9,6 +9,7 @@ build
 .cache/
 .build-target
 compile_commands.json
+!src/checker/
 !src/push_swap/
 
 ###################
