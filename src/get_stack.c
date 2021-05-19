@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 23:27:40 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/19 15:53:50 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:24:05 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,18 @@ void	insert_sorted(int n, int *data, int size)
 	data[i + 1] = n;
 }
 
-bool	already_exists(n, stack_size)
+bool	already_exists(int n, t_stack *stack)
 {
-	static int	*data;
-	static int	size;
-	bool		exists;
+	int	i;
 
-	exists = false;
-	if (!data)
-		data = malloc(stack_size * sizeof(*data));
-	exists = binary_search(n, data, size);
-	if (!exists)
-		insert_sorted(n, data, size++);
-	if (exists || size == stack_size)
-		free(data);
-	return (exists);
+	i = stack->top;
+	while (i >= 0)
+	{
+		if (stack->array[i] == n)
+			return (true);
+		i--;
+	}
+	return (false);
 }
 
 int	fill_element(t_stack *stack, char *arg)
@@ -80,9 +77,10 @@ int	fill_element(t_stack *stack, char *arg)
 			status = 1;
 		if (atoiv(array[j], &n))
 			status = 2;
-		if (already_exists(n, stack->size))
+		if (already_exists(n, stack))
 			status = 3;
-		stack->array[++stack->top] = n;
+		else
+			stack->array[++stack->top] = n;
 		j++;
 	}
 	free_array((void **)array);
@@ -105,7 +103,7 @@ t_stack	*get_stack(int size, char **args)
 	if (status)
 	{
 		free_stack(stack);
-		ft_putstr_fd("Error\n", STDERR_FILENO);
+		ft_putendl_fd("Error", STDERR_FILENO);
 		exit(status);
 	}
 	reverse_array(stack->array, stack->top + 1);
