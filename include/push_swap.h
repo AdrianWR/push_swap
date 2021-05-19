@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 21:09:58 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/18 21:47:04 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:22:56 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define RB "rb"
 # define RRA "rra"
 # define RRB "rrb"
+
+# define CHUNK_CONSTANT 50
 
 int		_index(t_stack *stack, int n);
 int		pivot(int *chunk, size_t size);

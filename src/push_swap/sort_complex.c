@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 14:50:26 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/19 00:21:58 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:18:14 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int find_from_bottom(t_stack *a, int min, int max)
 	return (-1);
 }
 
-void move_to_top(t_stack *a, int min, int max)
+void	move_to_top(t_stack *a, int min, int max)
 {
 	int i;
 	int index[2];
@@ -61,10 +61,10 @@ void move_to_top(t_stack *a, int min, int max)
 	smart_rotate(a, a->array[i]);
 }
 
-void	move_min_max_to_top(t_stack *b)
+void	move_min_or_max_to_top(t_stack *b)
 {
-	int i;
-	int index[2];
+	int	i;
+	int	index[2];
 
 	index[0] = _index(b, min(b));
 	index[1] = _index(b, max(b));
@@ -92,7 +92,7 @@ void	sort_chunk(t_stack *a, t_stack *b)
 {
 	while (b->top >= 0)
 	{
-		move_min_max_to_top(b);
+		move_min_or_max_to_top(b);
 		put_in_position(a, b);
 	}
 }
@@ -114,30 +114,29 @@ size_t	get_chunks(t_stack *a)
 {
 	size_t	chunks;
 	
-	(void) a;
-	chunks = 2;
+	chunks = (a->top + 1) / CHUNK_CONSTANT + 1;
 	return (chunks);
 }
 
 void	sort_complex(t_stack *a, t_stack *b)
 {
-	int	limit_min;
-	int	limit_max;
+	int		limit_min;
+	int		limit_max;
 	size_t	chunks;
 	size_t	step;
 
 	chunks = get_chunks(a);
-	limit_min = min(a);
+	limit_max = max(a);
 	step = (a->top + 1) / chunks;
 	while (chunks >= 1)
 	{
 		if (chunks == 1)
-			limit_max = max(a);
+			limit_min = min(a);
 		else 
-			limit_max = limit_min + step - 1;
+			limit_min = limit_max - step + 1;
 		move_chunk(a, b, limit_min, limit_max);
 		sort_chunk(a, b);
-		limit_min = limit_max + 1;
+		limit_max = limit_min - 1;
 		chunks--;
 	}
 	smart_rotate(a, min(a));
