@@ -2,6 +2,8 @@
 
 _Swap push is strange, isn't it???_
 
+![Push Swap Example](./assets/push_swap.gif)
+
 ## Introduction
 
 This project comprises an interesting case study regarding sorting algorithms and its performances, being part of the core curriculum of all 42 schools worldwide. The task is simple: given a sequence of random numbers disposed in a stack data structure (**stack A**), sort them with the help of an empty auxiliary stack (**stack B**) and a set of specific stack operations. The operations allowed are described as follows, as written in our task:
