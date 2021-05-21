@@ -29,10 +29,10 @@ override LDLIBS		+=
 
 .SECONDARY:
 .SECONDEXPANSION:
-.PHONY: all clean fclean re force test shell debug
+.PHONY: all clean fclean re force test
 
 # Source and object files for the executable
-vpath %.c src src/checker src/push_swap
+vpath %.c	src	src/checker src/push_swap libft/src libstack/src
 
 SRC_FILES			=	get_stack.c	\
 						search.c	\
@@ -63,64 +63,64 @@ LIBRARY_INCLUDES = $(patsubst %,-I%/include,$(LIBRARY_FOLDERS))
 override CPPFLAGS += $(LIBRARY_INCLUDES)
 LIBRARY_FLAGS = $(patsubst lib%,-l%,$(LIBRARY_FOLDERS))
 override LDLIBS += $(LIBRARY_FLAGS)
-library_src_files = libft/src/ft_atoi.c			\
-					libft/src/ft_bzero.c		\
-					libft/src/ft_calloc.c		\
-					libft/src/ft_isalnum.c		\
-					libft/src/ft_isalpha.c		\
-					libft/src/ft_isascii.c		\
-					libft/src/ft_isdigit.c		\
-					libft/src/ft_isprint.c		\
-					libft/src/ft_isspace.c		\
-					libft/src/ft_itoa.c			\
-					libft/src/ft_lstadd_front.c	\
-					libft/src/ft_lstdelone.c	\
-					libft/src/ft_lstfirst.c		\
-					libft/src/ft_lstmap.c		\
-					libft/src/ft_lstnew.c		\
-					libft/src/ft_lstsize.c		\
-					libft/src/ft_memccpy.c		\
-					libft/src/ft_strtrim.c		\
-					libft/src/ft_memcpy.c		\
-					libft/src/ft_strtok_r.c		\
-					libft/src/ft_memcmp.c		\
-					libft/src/ft_memset.c		\
-					libft/src/ft_putchar_fd.c	\
-					libft/src/ft_putendl_fd.c	\
-					libft/src/ft_putnbr_fd.c	\
-					libft/src/ft_putstr_fd.c	\
-					libft/src/ft_strchr.c		\
-					libft/src/ft_strcspn.c		\
-					libft/src/ft_strdup.c		\
-					libft/src/ft_strlcat.c		\
-					libft/src/ft_strlcpy.c		\
-					libft/src/ft_memmove.c		\
-					libft/src/ft_strmapi.c		\
-					libft/src/ft_strnstr.c		\
-					libft/src/ft_strrchr.c		\
-					libft/src/ft_strspn.c		\
-					libft/src/ft_split.c		\
-					libft/src/ft_lstiter.c		\
-					libft/src/ft_substr.c		\
-					libft/src/ft_tolower.c		\
-					libft/src/ft_toupper.c		\
-					libft/src/ft_strjoin.c		\
-					libft/src/ft_strtok.c		\
-					libft/src/ft_lstadd_back.c	\
-					libft/src/ft_lstlast.c		\
-					libft/src/ft_memchr.c		\
-					libft/src/ft_strlen.c		\
-					libft/src/ft_strncmp.c		\
-					libft/src/ft_strreplace.c	\
-					libft/src/ft_streq.c		\
-					libft/src/ft_lstclear.c		\
-					libft/src/get_next_line.c	\
-					libstack/src/initialize.c	\
-					libstack/src/push.c			\
-					libstack/src/max.c			\
-					libstack/src/min.c			\
-					libstack/src/rotate.c		\
-					libstack/src/swap.c
+library_src_files = ft_atoi.c			\
+					ft_bzero.c			\
+					ft_calloc.c			\
+					ft_isalnum.c		\
+					ft_isalpha.c		\
+					ft_isascii.c		\
+					ft_isdigit.c		\
+					ft_isprint.c		\
+					ft_isspace.c		\
+					ft_itoa.c			\
+					ft_lstadd_front.c	\
+					ft_lstdelone.c		\
+					ft_lstfirst.c		\
+					ft_lstmap.c			\
+					ft_lstnew.c			\
+					ft_lstsize.c		\
+					ft_memccpy.c		\
+					ft_strtrim.c		\
+					ft_memcpy.c			\
+					ft_strtok_r.c		\
+					ft_memcmp.c			\
+					ft_memset.c			\
+					ft_putchar_fd.c		\
+					ft_putendl_fd.c		\
+					ft_putnbr_fd.c		\
+					ft_putstr_fd.c		\
+					ft_strchr.c			\
+					ft_strcspn.c		\
+					ft_strdup.c			\
+					ft_strlcat.c		\
+					ft_strlcpy.c		\
+					ft_memmove.c		\
+					ft_strmapi.c		\
+					ft_strnstr.c		\
+					ft_strrchr.c		\
+					ft_strspn.c			\
+					ft_split.c			\
+					ft_lstiter.c		\
+					ft_substr.c			\
+					ft_tolower.c		\
+					ft_toupper.c		\
+					ft_strjoin.c		\
+					ft_strtok.c			\
+					ft_lstadd_back.c	\
+					ft_lstlast.c		\
+					ft_memchr.c			\
+					ft_strlen.c			\
+					ft_strncmp.c		\
+					ft_strreplace.c		\
+					ft_streq.c			\
+					ft_lstclear.c		\
+					get_next_line.c		\
+					initialize.c		\
+					push.c				\
+					max.c				\
+					min.c				\
+					rotate.c			\
+					swap.c
 library_o_files   = $(patsubst %.c,build/$(BUILD)/build/%.o,$(call library_src_files,$(1)))
 STATIC_LIBRARY_OUTPUT = $(patsubst %,lib/%.a,$(LIBRARY_FOLDERS))
 
@@ -134,20 +134,15 @@ TEST_O_FILES	+= $(O_FILES)
 TEST_O_FILES	+= $(filter-out %/checker.o, $(CHECKER_O_FILES))
 TEST_O_FILES	+= $(filter-out %/push_swap.o, $(PUSH_SWAP_O_FILES))
 
-all: $(NAME)
-
-override CPPFLAGS += -MMD
--include $(shell find build -name "*.d" 2> /dev/null)
-
-ifneq ($(BUILD),default)
-    include build-targets/$(BUILD).inc
-endif
 
 ################
 # SOURCE FILES #
 ################
 
 all: $(NAME)
+
+override CPPFLAGS += -MMD
+-include $(shell find build -name "*.d" 2> /dev/null)
 
 .build-target: force
 	echo $(BUILD) | cmp -s - $@ || echo $(BUILD) > $@
@@ -192,11 +187,7 @@ endef
 
 $(foreach lib,$(LIBRARY_FOLDERS),$(eval $(call library_variables,$(lib))))
 	
-build/$(BUILD)/lib/libft.a: $$(call library_o_files,%)
-	mkdir -p $(@D)
-	$(AR) rcs $@ $^
-
-build/$(BUILD)/lib/libstack.a: $$(call library_o_files,%)
+build/$(BUILD)/lib/lib%.a: $$(call library_o_files,%)
 	mkdir -p $(@D)
 	$(AR) rcs $@ $^
 
@@ -211,24 +202,9 @@ build/$(BUILD)/bin/test: $(TEST_O_FILES) $(STATIC_LIBRARY_OUTPUT)
 test: build/$(BUILD)/bin/test
 	./$<
 
-test_debug:
-	$(MAKE) BUILD=debug build/debug/bin/test
-	gdb ./build/debug/bin/test
-
-shell: $(NAME)
-	./$(NAME)
-
 #########
 # UTILS #
 #########
-
-debug_push_swap:
-	$(MAKE) BUILD=debug build/debug/bin/push_swap
-	gdb ./build/debug/bin/push_swap
-
-debug_checker:
-	$(MAKE) BUILD=debug build/debug/bin/checker
-	gdb ./build/debug/bin/checker
 
 clean:
 	$(RM) -r bin build lib .build-target
