@@ -58,9 +58,9 @@ You must have installed `make` and `clang` to compile this project. The executio
 To run the integrated tests, you must have installed the `Python 3.6+`, `perl` and `libipc-run3-perl` packages on your system. The unit tests may be executed by running the `make test` command. To run the simple integrated tests on your system, you can use the `runner.pl` helper script.
 
 ```shell
-perl -w runner.pl 100
-perl -w runner.pl 100 --checker
-perl -w runner.pl 100 --count
+perl runner.pl 100
+perl runner.pl 100 --checker
+perl runner.pl 100 --count
 ```
 
 In this example, a stack of 100 random integers is generated, and the `push_swap` command is used to sort the sequence.
