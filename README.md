@@ -51,4 +51,20 @@ Both the `checker` or `push_swap` executables will result in an error if a stack
 
 ## Compilation
 
-You must have installed `make` and `clang` to compile this project. The execution of the `make` command will generate the binaries for both `checker` and `push_swap`, besides the libraries needed to the compilation.
+You must have installed `make` and `clang` to compile this project. The execution of the `make` command will generate the binaries for both `checker` and `push_swap` and the libraries needed to the compilation.
+
+## Testing
+
+To run the integrated tests, you must have installed the `Python 3.6+`, `perl` and `libipc-run3-perl` packages on your system. The unit tests may be executed by running the `make test` command. To run the simple integrated tests on your system, you can use the `runner.pl` helper script.
+
+```shell
+perl -w runner.pl 100
+perl -w runner.pl 100 --checker
+perl -w runner.pl 100 --count
+```
+
+In this example, a stack of 100 random integers is generated, and the `push_swap` command is used to sort the sequence.
+
+- Running the script without arguments will print the instructions to `STDOUT`;
+- Running with the `--checker` option will invoke the `checker` program to check if the instructions will sort the stack correctly;
+- Running with the `--count` option will count the number of instructions needed to sort the stack with the `wc` program.

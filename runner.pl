@@ -7,7 +7,6 @@ use IPC::Run3 qw(run3);		# Install libipc-run3-perl
 
 sub usage {
     return "$0 <stack_size>
-$0 <stack_size> [--debug]
 $0 <stack_size> [--count]
 $0 <stack_size> [--checker]
 ";
@@ -24,7 +23,6 @@ my @numbers = join(' ', shuffle(0..($ARGV[0] - 1)));
 my ($in);
 run3 ['./push_swap', @numbers], undef, \$in, undef;
 
-# Checker Test
 if (grep { $_ eq '--checker' } @ARGV)
 {
 	my ($out, $err);
@@ -39,9 +37,5 @@ elsif (grep { $_ eq '--count' } @ARGV)
 }
 else
 {
-	if (grep { $_ eq '--debug' } @ARGV)
-	{
-		print "ARG: @numbers\n";
-	}
 	print $in;
 }
