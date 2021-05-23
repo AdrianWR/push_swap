@@ -108,4 +108,4 @@ Here, it's interesting to have some kind of `smart_rotate` function, whihc will 
 
 We can then proceed to sort the remaining chunks, until we have the stack A completely sorted. At the end, it's important to move the smaller element with the help of `smart_rotate`.
 
-![A visual example of push_swap with a large stack](./assets/push_swap.gif)
+![A visual example of push_swap with a large stack](./assets/push_swap_large.gif)
