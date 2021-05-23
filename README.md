@@ -87,13 +87,25 @@ python3 pyviz.py `perl -e "use List::Util 'shuffle'; print join(' ', shuffle(0..
 
 I was heavily inspired with the works of Jamie Dawson and Anya Schukin to get to the final version of this project. Let's start with Jamie's article [Push_Swap: The least amount of moves with two stacks](https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a), which explains how we can sort a stack with 5 numbers or fewer.
 
+### Sorting of a Small Stack
+
 Given that we have 0 or 1 numbers at the stack, we don't need to do anything, as we can assume that a stack of a single number is already sorted. At 2 numbers, we may have only two scenarios:
 
 1. The stack is already sorted; or
 2. if not, swap the numbers of stack A.
 
-When we have 3 numbers, the situation is a little more complex, but it's still easy. In this case, a sequence of 3 numbers only allow <img src="https://render.githubusercontent.com/render/math?math=3! = 6"> permutations of elements. Given that one these permutations is the sorted sequence, we only have to bother with 5 permutations, each one of them with a different set of instructions required to sort. The details are explained in Jamie's article, and the implementation may be found at the `sort_small.c` source file.
+When we have 3 numbers, the situation is a little more complex, but it's still easy. In this case, a sequence of 3 numbers only allow `3! = 6` permutations of elements. Given that one these permutations is the sorted sequence, we only have to bother with 5 permutations, each one of them with a different set of instructions required to sort. The details are explained in Jamie's article, and the implementation may be found at the `sort_small.c` source file.
 
-When we have 4 or 5 elements, we just need to push the top two elements to stack B and run the sorting algorithm on the remaining stack. 
+When we have 4 or 5 elements, we just need to push the top two elements to stack B and run the sorting algorithm on the remaining stack. To finish the sorting process, we just need to push the last two or less elements on stack B, finding the correct position on the stack A before running the push operation.
+
+### Sorting of a Large Stack
+
+The former algorithm wasn't able to deal with a large stack, with more than 100 or 500 elements. Therefore, we would need to change our strategy a little bit. First of all, I'd like to cite Anya's work [Push_Swap](https://github.com/anyaschukin/Push_Swap), which is the basis for this section of the project.
+
+The best way to deal with a large number of elements is to split them in smaller chunks. As we have an auxiliay stack to make operations, we could transfer the elements between a certain range of minimal and maximal limits, without bothering with their order art this point. After pushing all the elements of a chunk, let's push them back, but at this time, they must be pushed in the correct order. The use of rotation operations is of great importance right now.
+
+Here, it's interesting to have some kind of `smart_rotate` function, whihc will rotat a stack according to the number we want at the top. This way, we may select the canonical or reverse rotation, and apply the one which will grant us the fewer amount of moves required.
+
+We can then proceed to sort the remaining chunks, until we have the stack A completely sorted. At the end, it's important to move the smaller element with the help of `smart_rotate`.
 
 ![A visual example of push_swap with a large stack](./assets/push_swap.gif)
