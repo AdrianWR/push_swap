@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 11:50:29 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/19 16:53:03 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/29 18:26:31 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static int	result(char **line, char **readed_line, int fd, int readed)
 	int		len;
 	char	*tmp;
 
-	*line = ft_strdup("");
 	if (readed < 0)
 		return (-1);
 	else if (readed == 0 && readed_line[fd] == NULL && *line)

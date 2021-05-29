@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 22:40:51 by aroque            #+#    #+#             */
-/*   Updated: 2021/05/19 15:44:33 by aroque           ###   ########.fr       */
+/*   Updated: 2021/05/29 18:26:57 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	smart_rotate_a(t_stack *a, int n)
 	int	find;
 
 	find = a->top;
-	while (a->array[find] != n && find >= 0)
+	while (find >= 0 && a->array[find] != n)
 		find--;
 	if (find < 0)
 		return ;
