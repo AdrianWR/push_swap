@@ -102,9 +102,9 @@ When we have 4 or 5 elements, we just need to push the top two elements to stack
 
 The former algorithm wasn't able to deal with a large stack, with more than 100 or 500 elements. Therefore, we would need to change our strategy a little bit. First of all, I'd like to cite Anya's work [Push_Swap](https://github.com/anyaschukin/Push_Swap), which is the basis for this section of the project.
 
-The best way to deal with a large number of elements is to split them in smaller chunks. As we have an auxiliay stack to make operations, we could transfer the elements between a certain range of minimal and maximal limits, without bothering with their order art this point. After pushing all the elements of a chunk, let's push them back, but at this time, they must be pushed in the correct order. The use of rotation operations is of great importance right now.
+The best way to deal with a large number of elements is to split them in smaller chunks. As we have an auxiliary stack to make operations, we could transfer the elements in between of a certain range of minimal and maximal limits, without bothering with their order at this point. After pushing all the elements of a chunk, let's push them back, but at this time, they must be pushed in the correct order. The use of rotation operations is of great importance right now.
 
-Here, it's interesting to have some kind of `smart_rotate` function, whihc will rotat a stack according to the number we want at the top. This way, we may select the canonical or reverse rotation, and apply the one which will grant us the fewer amount of moves required.
+Here, it's interesting to have some kind of `smart_rotate` function, which will rotate the stack according to the number we want at the top. This way, we may select the canonical or reverse rotation, and apply the one which will grant us the fewer amount of moves required.
 
 We can then proceed to sort the remaining chunks, until we have the stack A completely sorted. At the end, it's important to move the smaller element with the help of `smart_rotate`.
 
